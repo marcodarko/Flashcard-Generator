@@ -1,37 +1,70 @@
 var ClozeCard = require('./ClozeCard.js');
 var BasicCard = require('./BasicCard.js');
+var inquirer = require('inquirer');
 
-// slice out the first two args: node and fileName, keep the rest
-var args = process.argv.slice(2);
+// // slice out the first two args: node and fileName, keep the rest
+// var args = process.argv.slice(2);
 
-// first index will tell us what action to take
-var command= args[0];
+// // first index will tell us what action to take
+// var command= args[0];
 
-// evaluate 
-switch(command){
 
-	case "basic":
+inquirer.prompt([
+	{
+		name: 'command',
+		message: 'What kind of card would you like to create?' 
+	},
+	{
+		name: 'front',
+		message: 'What goes on the FRONT of the card?' 
+	},
+	{
+		name: 'back',
+		message: 'What goes on the BACK of the card?' 
+	}
+	]).then(function (answers) {
 
-		var userBasicCard = new BasicCard(args[1], args[2]);
-		// calls log method on newly created card object
-		userBasicCard.logCard();
-		console.log("Front: "+userBasicCard.front);
-		console.log("Back: "+userBasicCard.back);
-		break;
+//answers are stored in a answers object and the property are the name specified in name:
 
-	case "cloze":
+		var command = answers.command.trim();
+		var front= answers.front.trim();
+		var back = answers.back.trim();
 
-		var userClozeCard = new ClozeCard(args[1], args[2]);
-		// calls log method on newly created card object
-		userClozeCard.logCard();
-		console.log("Full Text: "+userClozeCard.fullText);
-		console.log("Cloze: "+userClozeCard.cloze);
-		break;
 
-	default:
+		// evaluate command answer and choose appropiate path
+		switch(command){
 
-		console.log("Error 5000X-ALPHA902.v2: invalid input");
+			case "basic":
 
-	break;
+				var userBasicCard = new BasicCard(front, back);
+				// calls log method on newly created card object
+				userBasicCard.logCard();
+				console.log("Front: "+userBasicCard.front);
+				console.log("Back: "+userBasicCard.back);
+				break;
 
-};
+			case "cloze":
+				//using the cloze constructor we created a new object
+				var userClozeCard = new ClozeCard(front, back);
+				// calls log method on newly created card object
+				userClozeCard.logCard();
+				console.log("Full Text: "+userClozeCard.fullText);
+				console.log("Cloze: "+userClozeCard.cloze);
+				break;
+
+			default:
+				//if command doesnt match any of the options it'll go to default error msg
+				console.log("Error 5000X-ALPHA902.v2: invalid input");
+
+			break;
+
+		};
+   
+
+});
+
+
+
+
+
+

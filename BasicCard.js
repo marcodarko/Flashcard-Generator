@@ -11,11 +11,13 @@ function BasicCard ( front, back ){
 		 // upon calling this method 
 		 this.logCard= function(){
 
-			fs.appendFile("cards.txt", "Basic Card: "+this.front+" "+this.back, function(error){
+			fs.appendFile("cards.txt", "Basic Card: "+this.front+" "+this.back+", ", function(error){
 
 				if(error){
 					console.log("Error writting file");
 				}
+
+				console.log("Basic card created!");
 
 			});
 		 }
@@ -31,5 +33,7 @@ function BasicCard ( front, back ){
 
 
 
-
+//exports the function to any file that requires it
 module.exports = BasicCard;
+
+
