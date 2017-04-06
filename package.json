@@ -1,0 +1,19 @@
+{
+  "name": "flash-card-generator",
+  "version": "1.0.0",
+  "description": "node js and constructors",
+  "main": "cli.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marcodarko/Flashcard-Generator.git"
+  },
+  "author": "marcodarko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marcodarko/Flashcard-Generator/issues"
+  },
+  "homepage": "https://github.com/marcodarko/Flashcard-Generator#readme"
+}
